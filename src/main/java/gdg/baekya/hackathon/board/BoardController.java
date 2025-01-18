@@ -44,4 +44,9 @@ public class BoardController {
     public ApiResponse<List<BoardResponseDto>> showBoardList(@PathVariable("page") Long page){
         return ApiResponse.ok(boardService.showBoardList(page));
     }
+
+    @PostMapping("/reaction/{boardId}")
+    public ApiResponse<Object> makeLike(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable("boardId") Long boardId){
+        return ApiResponse.ok(boardService.makeLike(principalDetails, boardId));
+    }
 }
