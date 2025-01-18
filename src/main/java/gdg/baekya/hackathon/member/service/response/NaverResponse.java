@@ -1,4 +1,4 @@
-package gdg.baekya.hackathon.security.oauth.service.response;
+package gdg.baekya.hackathon.member.service.response;
 
 import java.util.Map;
 import java.util.Optional;

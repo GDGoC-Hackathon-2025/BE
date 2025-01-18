@@ -1,4 +1,4 @@
-package gdg.baekya.hackathon.domain.member;
+package gdg.baekya.hackathon.member.domain;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;

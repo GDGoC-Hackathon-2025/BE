@@ -1,4 +1,4 @@
-package gdg.baekya.hackathon.security.oauth.service.response;
+package gdg.baekya.hackathon.member.service.response;
 
 public interface OAuth2UserResponse {
 

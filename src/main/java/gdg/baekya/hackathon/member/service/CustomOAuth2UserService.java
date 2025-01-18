@@ -1,11 +1,10 @@
-package gdg.baekya.hackathon.security.oauth.service;
+package gdg.baekya.hackathon.member.service;
 
-import gdg.baekya.hackathon.domain.member.Address;
-import gdg.baekya.hackathon.domain.member.Member;
-import gdg.baekya.hackathon.domain.member.MemberRepository;
-import gdg.baekya.hackathon.security.oauth.domain.PrincipalDetails;
-import gdg.baekya.hackathon.security.oauth.service.response.NaverResponse;
-import gdg.baekya.hackathon.security.oauth.service.response.OAuth2UserResponse;
+import gdg.baekya.hackathon.member.domain.Member;
+import gdg.baekya.hackathon.member.domain.MemberRepository;
+import gdg.baekya.hackathon.member.domain.PrincipalDetails;
+import gdg.baekya.hackathon.member.service.response.NaverResponse;
+import gdg.baekya.hackathon.member.service.response.OAuth2UserResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -15,7 +14,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -55,9 +53,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         if (existingMember == null) {
             // 신규 사용자 생성
-            Address address = Address.of("미정", "미정", 11111);
 
-            Member newMember = Member.of(email, username,  phoneNumber, address);
+            Member newMember = Member.of(email, username,  phoneNumber);
             Member savedMember = memberRepository.save(newMember);
 
             log.info("신규 사용자 등록: {}", savedMember.getId());
