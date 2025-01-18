@@ -10,11 +10,7 @@ public enum Role {
     OAUTH_FIRST_JOIN ("OAUTH_FIRST_JOIN"),
     USER ("USER"),
     ADMIN ("ADMIN"),
-    EMPLOYER("EMPLOYER"),
-    BANNER ("BANNER"),
-    VIP ("VIP"),
-    VVIP ("VVIP"),
-    SVIP ("SVIP");
+    CROWD("CROWD");
 
     private final String role;
 
