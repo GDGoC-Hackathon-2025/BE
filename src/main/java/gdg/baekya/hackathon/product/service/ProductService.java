@@ -11,7 +11,7 @@ public interface ProductService {
     ProductResponse createProduct(ProductReqeust reqeust);
 
     // 펀딩 리스트 가져오기
-    PageResponse<ProductResponse> findAll(ProductReqeust reqeust, PageRequest pageRequest);
+    PageResponse<ProductResponse> findAll(PageRequest pageRequest);
 
     // 특정 카테고리에 있는 아이템 조회하기
     PageResponse<ProductResponse> findByCategoryId(Long CategoryId, PageRequest pageRequest);

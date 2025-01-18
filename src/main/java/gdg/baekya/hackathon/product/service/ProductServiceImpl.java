@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageResponse<ProductResponse> findAll(ProductReqeust reqeust, PageRequest pageRequest) {
+    public PageResponse<ProductResponse> findAll(PageRequest pageRequest) {
 
         Pageable pageable = org.springframework.data.domain.PageRequest.of(pageRequest.getPage()-1, pageRequest.getSize(), Sort.by("id").descending());
         Page<Object[]> result = productRepository.selectList(pageable);

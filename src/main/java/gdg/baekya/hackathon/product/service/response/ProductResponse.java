@@ -33,7 +33,7 @@ public class ProductResponse {
     private int nowPrice;
 
     // 남은 금액
-    private int lastPrice;
+    private int remainPrice;
 
     // 펀딩 달성률 (백분율)
     private float percentage;
@@ -52,7 +52,7 @@ public class ProductResponse {
                 .price(product.getPrice())
                 .goalPrice(product.getGoalPrice())
                 .nowPrice(product.getNowPrice())
-                .lastPrice(product.getGoalPrice() - product.getNowPrice())
+                .remainPrice(product.getGoalPrice() - product.getNowPrice())
                 .percentage(calculatePercentage(product.getNowPrice(), product.getGoalPrice()))
                 .build();
     }
