@@ -20,14 +20,14 @@ public class BoardReaction {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+//    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
+//    @JoinColumn(name = "board_id")
     private Board board;
 
-    private int Likes;
+    private boolean Likes;
 
     // 생성자
     public static BoardReaction of(Board board, Member member) {

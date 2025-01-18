@@ -39,6 +39,9 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
+    //validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
     // 외부 API 연결
 //    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
