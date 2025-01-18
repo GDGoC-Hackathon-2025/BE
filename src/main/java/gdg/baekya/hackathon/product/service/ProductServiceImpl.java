@@ -145,14 +145,4 @@ public class ProductServiceImpl implements ProductService {
 
         return ProductResponse.from(result);
     }
-
-    @Override
-    public PageResponse<ProductResponse> findByLike(PageRequest pageRequest) {
-        return null;
-    }
-
-    @Override
-    public PageResponse<ProductResponse> findByDate(PageRequest pageRequest) {
-        return null;
-    }
 }

@@ -24,9 +24,6 @@ public interface ProductService {
     ProductResponse addLike(AddRequest addRequest);
 
     // 좋아요가 많은 순서대로 조회하기
-    PageResponse<ProductResponse> findByLike(PageRequest pageRequest);
-
-    // 마감일이 가까운 순서대로 조회하기
-    PageResponse<ProductResponse> findByDate(PageRequest pageRequest);
+//    PageResponse<ProductResponse> findByLike(String category, PageRequest pageRequest);
 
 }
