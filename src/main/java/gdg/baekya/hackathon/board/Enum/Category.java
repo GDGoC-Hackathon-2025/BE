@@ -1,4 +1,4 @@
-package gdg.baekya.hackathon.category.domain;
+package gdg.baekya.hackathon.board.Enum;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

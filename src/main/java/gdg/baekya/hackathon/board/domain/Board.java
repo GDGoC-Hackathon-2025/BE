@@ -1,6 +1,7 @@
 package gdg.baekya.hackathon.board.domain;
 
 
+import gdg.baekya.hackathon.board.Enum.Category;
 import gdg.baekya.hackathon.comment.domain.Comment;
 import gdg.baekya.hackathon.member.domain.Member;
 import jakarta.persistence.*;
