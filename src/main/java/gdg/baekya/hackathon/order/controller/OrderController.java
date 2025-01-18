@@ -25,7 +25,8 @@ public class OrderController {
 
     // 가주문 오더 생성
     @PostMapping
-    public ApiResponse<TossOrderResponse> create(@RequestBody OrderRequest orderRequest) {
+    public ApiResponse<TossOrderResponse> create(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestBody OrderRequest orderRequest) {
+        orderRequest.setMemberId(principalDetails.getId());
         return ApiResponse.created(orderService.order(orderRequest));
     }
 
