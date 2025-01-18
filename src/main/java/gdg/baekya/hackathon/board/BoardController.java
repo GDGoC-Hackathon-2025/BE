@@ -39,4 +39,9 @@ public class BoardController {
     public ApiResponse<BoardDetailResponseDto> showBoardDetail(@PathVariable("boardId") Long boardId){
         return ApiResponse.ok(boardService.showBoardDetail(boardId));
     }
+
+    @GetMapping("/list/{page}")
+    public ApiResponse<List<BoardResponseDto>> showBoardList(@PathVariable("page") Long page){
+        return ApiResponse.ok(boardService.showBoardList(page));
+    }
 }
