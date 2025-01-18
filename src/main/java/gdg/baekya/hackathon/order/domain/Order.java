@@ -41,20 +41,16 @@ public class Order {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    // 원하는 값 펀딩
-    private int wantedPrice;
-
     // 펀딩하는 시간
     @CreatedDate
     private LocalDateTime orderDate;
 
     // 생성자
-    public static Order of(Member member, Product product, int wantedPrice) {
+    public static Order of(Member member, Product product) {
         return Order.builder()
                 .member(member)
                 .orderDate(LocalDateTime.now())
                 .product(product)
-                .wantedPrice(wantedPrice)
                 .build();
     }
 

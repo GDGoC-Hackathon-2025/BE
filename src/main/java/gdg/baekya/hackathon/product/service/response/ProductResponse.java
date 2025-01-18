@@ -14,8 +14,8 @@ public class ProductResponse {
 
     private Long id;
 
-    // 민원에서 펀딩 개최
-    private String boardName;
+    // 민원 id 정보
+    private Long boardId;
 
     // 펀딩 제목
     private String pname;
@@ -25,6 +25,9 @@ public class ProductResponse {
 
     // 펀딩 가격
     private int price;
+
+    // 펀딩 좋아요
+    private int liked;
 
     // 펀딩 상품 목표 금액
     private int goalPrice;
@@ -46,10 +49,11 @@ public class ProductResponse {
     public static ProductResponse from(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
-                .boardName(product.getBoard().getContent())
+                .boardId(product.getBoard().getId())
                 .pname(product.getPname())
                 .pdesc(product.getPdesc())
                 .price(product.getPrice())
+                .liked(product.getReactions().size())
                 .goalPrice(product.getGoalPrice())
                 .nowPrice(product.getNowPrice())
                 .remainPrice(product.getGoalPrice() - product.getNowPrice())

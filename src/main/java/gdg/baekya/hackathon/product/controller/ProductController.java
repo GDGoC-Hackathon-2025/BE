@@ -3,6 +3,7 @@ package gdg.baekya.hackathon.product.controller;
 import gdg.baekya.hackathon.common.response.ApiResponse;
 import gdg.baekya.hackathon.page.request.PageRequest;
 import gdg.baekya.hackathon.page.response.PageResponse;
+import gdg.baekya.hackathon.product.controller.request.AddRequest;
 import gdg.baekya.hackathon.product.controller.request.ProductReqeust;
 import gdg.baekya.hackathon.product.service.ProductImageService;
 import gdg.baekya.hackathon.product.service.ProductService;
@@ -60,6 +61,12 @@ public class ProductController {
         return productImageService.getFile(fileName);
     }
 
+    // 펀딩에 좋아요 누르기
+    @PostMapping("/reaction")
+    public ApiResponse<ProductResponse> addLike(@RequestBody AddRequest addRequest) {
+
+        return ApiResponse.created(productService.addLike(addRequest));
+    }
 
 
 }

@@ -70,6 +70,7 @@ public class Product {
                 .price(price)
                 .category(board.getCategory())
                 .goalPrice(goalPrice)
+                .nowPrice(0)
                 .createdAt(createdAt)
                 .endAt(endAt)
                 .build();
@@ -77,5 +78,9 @@ public class Product {
 
     public void addReaction(ProductReaction reaction) {
         reactions.add(reaction);
+    }
+
+    public void addPrice(int price) {
+        this.nowPrice = this.nowPrice + price;
     }
 }

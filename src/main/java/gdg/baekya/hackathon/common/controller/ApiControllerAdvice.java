@@ -58,4 +58,12 @@ public class ApiControllerAdvice {
         log.error("GLOBAL EXCEPTION {} 발생", e);
         return ApiResponse.fail(new CustomException(ErrorCode.NOT_FOUND_END_POINT));
     }
+
+    // NoSuchElementException, EntityNotFoundException 일 때, 예외처리
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = {IllegalStateException.class})
+    public ApiResponse<?> handleIllegalStateException(Exception e) {
+        log.error("GLOBAL EXCEPTION {} 발생", e);
+        return ApiResponse.fail(new CustomException(ErrorCode.BAD_REQUEST));
+    }
 }

@@ -27,16 +27,18 @@ public class ProductReaction {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private int Likes;
+    private boolean liked;
 
+    // 생성자
     // 생성자
     public static ProductReaction of(Product product, Member member) {
         ProductReaction reaction = ProductReaction.builder()
                 .product(product)
                 .member(member)
+                .liked(true) // 초기 좋아요 상태
                 .build();
 
-        product.addReaction(reaction);
+        product.addReaction(reaction); // 순환 참조 방지를 위한 로직 확인 필요
         return reaction;
     }
 }
