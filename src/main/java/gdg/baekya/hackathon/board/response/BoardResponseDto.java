@@ -1,4 +1,4 @@
-package gdg.baekya.hackathon.board.request;
+package gdg.baekya.hackathon.board.response;
 
 import gdg.baekya.hackathon.board.domain.Board;
 import java.time.LocalDateTime;
