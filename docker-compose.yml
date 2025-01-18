@@ -1,0 +1,7 @@
+version: '3'
+services:
+  spring:
+    image: kimyeongrok/awardplease:latest
+    container_name: award-please-container
+    ports:
+      - 8080:8080
