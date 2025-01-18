@@ -1,8 +1,8 @@
 package gdg.baekya.hackathon.product.domain;
 
 
+import gdg.baekya.hackathon.board.Enum.Category;
 import gdg.baekya.hackathon.board.domain.Board;
-import gdg.baekya.hackathon.category.domain.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

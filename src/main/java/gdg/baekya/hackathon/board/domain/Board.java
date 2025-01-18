@@ -1,9 +1,9 @@
 package gdg.baekya.hackathon.board.domain;
 
 
+import gdg.baekya.hackathon.board.Enum.Category;
 import gdg.baekya.hackathon.comment.domain.Comment;
 import gdg.baekya.hackathon.member.domain.Member;
-import gdg.baekya.hackathon.category.domain.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.cglib.core.Local;
 
 @Entity
 @Getter
@@ -31,7 +32,7 @@ public class Board {
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "member_id")
     private Member member;
 
@@ -39,9 +40,10 @@ public class Board {
     @Column(name = "view_count",nullable = false)
     private int viewCount;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
+    private LocalDateTime endDate; // 민원 마감일
 
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedDate;
 
     @OneToMany(mappedBy = "board")
     @Builder.Default
@@ -56,13 +58,15 @@ public class Board {
     private Category category;
 
     // 생성자
-    public static Board of(String title, String content, Member member) {
-
+    public static Board of(String title, String content, Member member,
+            LocalDateTime endDate, String category) {
         return Board.builder()
                 .title(title)
                 .content(content)
                 .member(member)
-                .createdAt(LocalDateTime.now())
+                .createdDate(LocalDateTime.now())
+                .endDate(endDate)
+                .category(Category.from(category))
                 .build();
     }
 

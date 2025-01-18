@@ -1,6 +1,6 @@
 package gdg.baekya.hackathon.product.domain;
 
-import gdg.baekya.hackathon.category.domain.Category;
+import gdg.baekya.hackathon.board.Enum.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -11,7 +11,11 @@ spring:
   file:
     upload:
       product:
+<<<<<<< HEAD
         path: "/Users/eedo_y/Individual/Project/GDGoc-Hackathon/BE/hackathon/src/main/resources/static/productImage"
+=======
+        path: "./src/main/resources/static/productImage"
+>>>>>>> feat-민원게시판
 
   jpa:
     hibernate:

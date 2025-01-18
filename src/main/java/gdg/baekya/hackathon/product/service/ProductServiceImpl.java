@@ -1,5 +1,6 @@
 package gdg.baekya.hackathon.product.service;
 
+import gdg.baekya.hackathon.board.Enum.Category;
 import gdg.baekya.hackathon.board.domain.Board;
 import gdg.baekya.hackathon.board.domain.BoardRepository;
 import gdg.baekya.hackathon.member.domain.Member;
@@ -9,7 +10,9 @@ import gdg.baekya.hackathon.page.response.PageResponse;
 import gdg.baekya.hackathon.product.controller.request.AddRequest;
 import gdg.baekya.hackathon.product.controller.request.ProductReqeust;
 import gdg.baekya.hackathon.product.domain.*;
-import gdg.baekya.hackathon.category.domain.Category;
+import gdg.baekya.hackathon.product.domain.Product;
+import gdg.baekya.hackathon.product.domain.ProductImage;
+import gdg.baekya.hackathon.product.domain.ProductRepository;
 import gdg.baekya.hackathon.product.service.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
