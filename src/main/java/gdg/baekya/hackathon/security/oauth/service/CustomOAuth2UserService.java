@@ -51,8 +51,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         }
 
         // 기존 사용자 검색
-        Member existingMember = memberRepository.findByEmail(email)
-                .orElseThrow(() -> new NoSuchElementException("멤버가 없습니다"));
+        Member existingMember = memberRepository.findByEmail(email);
 
         if (existingMember == null) {
             // 신규 사용자 생성
