@@ -1,8 +1,8 @@
 package gdg.baekya.hackathon.security.jwt.provider;
 
-import gdg.baekya.hackathon.domain.member.Member;
-import gdg.baekya.hackathon.domain.member.MemberRepository;
-import gdg.baekya.hackathon.security.oauth.domain.PrincipalDetails;
+import gdg.baekya.hackathon.member.domain.Member;
+import gdg.baekya.hackathon.member.domain.MemberRepository;
+import gdg.baekya.hackathon.member.domain.PrincipalDetails;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;

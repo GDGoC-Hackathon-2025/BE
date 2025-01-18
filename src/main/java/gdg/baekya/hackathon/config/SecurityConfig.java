@@ -3,7 +3,7 @@ package gdg.baekya.hackathon.config;
 import gdg.baekya.hackathon.security.jwt.filter.TokenAuthenticationFilter;
 import gdg.baekya.hackathon.security.jwt.handler.OAuth2LoginSuccessHandler;
 import gdg.baekya.hackathon.security.jwt.provider.TokenProvider;
-import gdg.baekya.hackathon.security.oauth.service.CustomOAuth2UserService;
+import gdg.baekya.hackathon.member.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

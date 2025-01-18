@@ -1,4 +1,4 @@
-package gdg.baekya.hackathon.domain.member;
+package gdg.baekya.hackathon.member.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,6 +31,8 @@ public class Member implements UserDetails{
     @Column(nullable = false)
     private String username;
 
+    private String nickname;
+
     @Column
     private String phoneNumber;
 
@@ -40,20 +42,17 @@ public class Member implements UserDetails{
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Role> roles = new ArrayList<>();
 
-    @Embedded
-    private Address address;
 
     private LocalDateTime createdAt;
 
     // 생성자
-    public static Member of(String email, String username, String phoneNumber, Address address) {
+    public static Member of(String email, String username, String phoneNumber) {
         List<Role> roles = new ArrayList<>();
 
         Member member = Member.builder()
                 .username(username)
                 .email(email)
                 .phoneNumber(phoneNumber)
-                .address(address)
                 .roles(roles)
                 .createdAt(LocalDateTime.now())
                 .build();

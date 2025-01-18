@@ -1,6 +1,6 @@
-package gdg.baekya.hackathon.security.oauth.domain;
+package gdg.baekya.hackathon.member.domain;
 
-import gdg.baekya.hackathon.domain.member.Member;
+import gdg.baekya.hackathon.member.domain.Member;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.GrantedAuthority;
