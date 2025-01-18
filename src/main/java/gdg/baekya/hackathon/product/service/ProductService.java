@@ -2,6 +2,7 @@ package gdg.baekya.hackathon.product.service;
 
 import gdg.baekya.hackathon.page.request.PageRequest;
 import gdg.baekya.hackathon.page.response.PageResponse;
+import gdg.baekya.hackathon.product.controller.request.AddRequest;
 import gdg.baekya.hackathon.product.controller.request.ProductReqeust;
 import gdg.baekya.hackathon.product.service.response.ProductResponse;
 
@@ -18,4 +19,14 @@ public interface ProductService {
 
     // 펀딩 상세정보 가져오기
     ProductResponse getProduct(Long productId);
+
+    // 펀딩 좋아요 누르기
+    ProductResponse addLike(AddRequest addRequest);
+
+    // 좋아요가 많은 순서대로 조회하기
+    PageResponse<ProductResponse> findByLike(PageRequest pageRequest);
+
+    // 마감일이 가까운 순서대로 조회하기
+    PageResponse<ProductResponse> findByDate(PageRequest pageRequest);
+
 }
