@@ -1,6 +1,7 @@
 package gdg.baekya.hackathon.product.controller;
 
 import gdg.baekya.hackathon.common.response.ApiResponse;
+import gdg.baekya.hackathon.member.domain.PrincipalDetails;
 import gdg.baekya.hackathon.page.request.PageRequest;
 import gdg.baekya.hackathon.page.response.PageResponse;
 import gdg.baekya.hackathon.product.controller.request.AddRequest;
@@ -13,6 +14,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,8 +65,8 @@ public class ProductController {
 
     // 펀딩에 좋아요 누르기
     @PostMapping("/reaction")
-    public ApiResponse<ProductResponse> addLike(@RequestBody AddRequest addRequest) {
-
+    public ApiResponse<ProductResponse> addLike(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestBody AddRequest addRequest) {
+        addRequest.setMemberId(principalDetails.getId());
         return ApiResponse.created(productService.addLike(addRequest));
     }
 
