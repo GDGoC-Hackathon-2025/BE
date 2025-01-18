@@ -16,11 +16,11 @@ public class BoardImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rimage_id")
+    @Column(name = "bimage_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
+    @JoinColumn(name = "board_id")
     private Board board;
 
     private String fileName;
