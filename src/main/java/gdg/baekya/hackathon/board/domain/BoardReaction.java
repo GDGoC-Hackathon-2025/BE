@@ -27,7 +27,7 @@ public class BoardReaction {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    private int Like;
+    private int Likes;
 
     // 생성자
     public static BoardReaction of(Board board, Member member) {

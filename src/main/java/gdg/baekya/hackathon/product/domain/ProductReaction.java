@@ -24,10 +24,10 @@ public class ProductReaction {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    private int Like;
+    private int Likes;
 
     // 생성자
     public static ProductReaction of(Product product, Member member) {
