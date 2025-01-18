@@ -2,7 +2,6 @@ package gdg.baekya.hackathon.product.domain;
 
 
 import gdg.baekya.hackathon.board.domain.Board;
-import gdg.baekya.hackathon.board.domain.BoardReaction;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,11 +38,14 @@ public class Product {
     // 펀딩 상품의 가격
     private int price;
 
+    // 펀딩 현재 금액
+    private int nowPrice;
+
     // 펀딩 상품 목표 금액
     private int goalPrice;
 
     // 좋아요 목록
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "product")
     @Builder.Default
     private List<ProductReaction> reactions = new ArrayList<>();
 
@@ -55,12 +57,15 @@ public class Product {
 
 
     //생성
-    public static Product of(String pname, String pdesc, int price) {
+    public static Product of(Board board,String pname, String pdesc, int price,int goalPrice, LocalDateTime createdAt, LocalDateTime endAt) {
         return Product.builder()
+                .board(board)
                 .pname(pname)
                 .pdesc(pdesc)
-                .goalPrice(price)
-                .createdAt(LocalDateTime.now())
+                .price(price)
+                .goalPrice(goalPrice)
+                .createdAt(createdAt)
+                .endAt(endAt)
                 .build();
     }
 
