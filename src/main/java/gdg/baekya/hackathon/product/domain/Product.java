@@ -2,6 +2,7 @@ package gdg.baekya.hackathon.product.domain;
 
 
 import gdg.baekya.hackathon.board.domain.Board;
+import gdg.baekya.hackathon.category.domain.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,6 +45,10 @@ public class Product {
     // 펀딩 상품 목표 금액
     private int goalPrice;
 
+    // 카테고리
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     // 좋아요 목록
     @OneToMany(mappedBy = "product")
     @Builder.Default
@@ -63,6 +68,7 @@ public class Product {
                 .pname(pname)
                 .pdesc(pdesc)
                 .price(price)
+                .category(board.getCategory())
                 .goalPrice(goalPrice)
                 .createdAt(createdAt)
                 .endAt(endAt)

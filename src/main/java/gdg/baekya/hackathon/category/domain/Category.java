@@ -1,36 +1,20 @@
 package gdg.baekya.hackathon.category.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
-@Entity
 @Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Category {
+@RequiredArgsConstructor
+public enum Category {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    WORK("일자리"),
+    FACI("시설");
 
-    @Column(nullable = false)
-    private String name;
+    private final String category;
 
-    @Column(nullable = false, unique = true)
-    private String code;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
-    private Category parent;
-
-    @OneToMany(mappedBy = "parent")
-    @JsonIgnore
-    private List<Category> children;
+    @JsonValue
+    public String getCategory() {
+        return category;
+    }
 }

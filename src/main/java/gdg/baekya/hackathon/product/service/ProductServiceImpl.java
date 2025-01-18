@@ -6,6 +6,7 @@ import gdg.baekya.hackathon.page.request.PageRequest;
 import gdg.baekya.hackathon.page.response.PageResponse;
 import gdg.baekya.hackathon.product.controller.request.ProductReqeust;
 import gdg.baekya.hackathon.product.domain.Product;
+import gdg.baekya.hackathon.category.domain.Category;
 import gdg.baekya.hackathon.product.domain.ProductImage;
 import gdg.baekya.hackathon.product.domain.ProductRepository;
 import gdg.baekya.hackathon.product.service.response.ProductResponse;
@@ -68,8 +69,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageResponse<ProductResponse> findByCategoryId(Long CategoryId, PageRequest pageRequest) {
-        return null;
+    public PageResponse<ProductResponse> findByCategory(String category, PageRequest pageRequest) {
+        Pageable pageable = org.springframework.data.domain.PageRequest.of(pageRequest.getPage()-1, pageRequest.getSize(), Sort.by("id").descending());
+        Page<Object[]> result = productRepository.findByCategoryWithImages(pageable, Category.valueOf(category));
+
+        List<ProductResponse> dtoList = result.get().map(arr -> {
+            Product product = (Product) arr[0];
+            ProductImage productImage = (ProductImage) arr[1];
+
+            String imageStr = (productImage != null) ? productImage.getFileName() : "No image found";
+            ProductResponse dto = ProductResponse.from(product);
+            dto.setUploadFileNames(Collections.singletonList(imageStr));
+
+            return dto;
+        }).toList();
+
+        long total = result.getTotalElements();
+        return new PageResponse<>(dtoList, pageRequest, total);
     }
 
     @Override

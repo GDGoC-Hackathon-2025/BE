@@ -33,6 +33,20 @@ public class ProductController {
         return ApiResponse.created(productService.createProduct(productRequest));
     }
 
+    // 펀딩 전체 조회 및 카테고리별 펀딩 조회
+    @GetMapping("/list")
+    public ApiResponse<PageResponse<ProductResponse>> getList(
+            @RequestParam(value = "category", required = false) String category,
+            PageRequest pageRequest) {
+
+        // 카테고리가 제공되지 않으면 전체 조회, 제공되면 해당 카테고리로 조회
+        if (category == null || category.isEmpty()) {
+            return ApiResponse.ok(productService.findAll(pageRequest));
+        } else {
+            return ApiResponse.ok(productService.findByCategory(category, pageRequest));
+        }
+    }
+
 
     // 펀딩 상세 조회
     @GetMapping("/{id}")
@@ -46,10 +60,6 @@ public class ProductController {
         return productImageService.getFile(fileName);
     }
 
-    // 펀딩 전체 조회
-    @GetMapping("/list")
-    public ApiResponse<PageResponse<ProductResponse>> getList(PageRequest pageRequest) {
-        return ApiResponse.ok(productService.findAll(pageRequest));
-    }
+
 
 }

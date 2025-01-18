@@ -14,7 +14,7 @@ public interface ProductService {
     PageResponse<ProductResponse> findAll(PageRequest pageRequest);
 
     // 특정 카테고리에 있는 아이템 조회하기
-    PageResponse<ProductResponse> findByCategoryId(Long CategoryId, PageRequest pageRequest);
+    PageResponse<ProductResponse> findByCategory(String category, PageRequest pageRequest);
 
     // 펀딩 상세정보 가져오기
     ProductResponse getProduct(Long productId);
