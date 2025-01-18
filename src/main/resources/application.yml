@@ -8,6 +8,11 @@ spring:
     password: admin1234!
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  file:
+    upload:
+      product:
+        path: "/Users/eedo_y/Individual/Project/GDGoc-Hackathon/BE/hackathon/src/main/resources/static/productImage"
+
   jpa:
     hibernate:
       ddl-auto: update
