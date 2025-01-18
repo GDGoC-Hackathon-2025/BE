@@ -34,22 +34,28 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse createProduct(ProductReqeust reqeust) {
 
-        // 작성페이지에서의 카테고리는 id를 바탕으로 민원 조회하는 것이 맞을 듯?
-
         // 민원 정보 가져오기
         Board board = boardRepository.findById(reqeust.getBoardId())
                 .orElseThrow(() -> new NoSuchElementException("해당 민원이 존재하지 않습니다."));
 
-        // 새로운 상품 생성
-        Product newOne = Product.of(board, reqeust.getPname(), reqeust.getPdesc(), reqeust.getPrice(), reqeust.getGoalPrice(), reqeust.getCreatedAt(), reqeust.getEndAt());
-        Product product = productRepository.save(newOne);
-        // 사진 저장하기
+        // 중복 체크: 해당 boardId로 이미 생성된 Product가 있는지 확인
+        if (productRepository.existsByBoardId(reqeust.getBoardId())) {
+            throw new IllegalStateException("해당 민원에 대한 상품이 이미 존재합니다. boardId: " + reqeust.getBoardId());
+        }
 
+        // 새로운 상품 생성
+        Product newOne = Product.of(board, reqeust.getPname(), reqeust.getPdesc(), reqeust.getPrice(),
+                reqeust.getGoalPrice(), reqeust.getCreatedAt(), reqeust.getEndAt());
+        Product product = productRepository.save(newOne);
+
+        // 사진 저장하기
         List<String> uploads = productImageService.saveFiles(product, reqeust.getFiles());
         ProductResponse response = ProductResponse.from(product);
         response.setUploadFileNames(uploads);
+
         return response;
     }
+
 
     @Override
     public PageResponse<ProductResponse> findAll(PageRequest pageRequest) {

@@ -14,8 +14,8 @@ public class ProductResponse {
 
     private Long id;
 
-    // 민원에서 펀딩 개최
-    private String boardName;
+    // 민원 id 정보
+    private Long boardId;
 
     // 펀딩 제목
     private String pname;
@@ -46,7 +46,7 @@ public class ProductResponse {
     public static ProductResponse from(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
-                .boardName(product.getBoard().getContent())
+                .boardId(product.getBoard().getId())
                 .pname(product.getPname())
                 .pdesc(product.getPdesc())
                 .price(product.getPrice())

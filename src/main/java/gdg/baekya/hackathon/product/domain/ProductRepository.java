@@ -23,6 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE (pi.ord = 0 OR pi.ord IS NULL) AND p.category = :category")
     Page<Object[]> findByCategoryWithImages(Pageable pageable, @Param("category") Category category);
 
+    boolean existsByBoardId(Long boardId);
 
 
 }
