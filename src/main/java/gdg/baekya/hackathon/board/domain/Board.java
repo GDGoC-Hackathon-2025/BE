@@ -38,9 +38,11 @@ public class Board {
     @Column(name = "view_count",nullable = false)
     private int viewCount;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
 
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedDate;
+
+    private Category category;
 
     @OneToMany(mappedBy = "board")
     @Builder.Default
@@ -57,7 +59,7 @@ public class Board {
                 .title(title)
                 .content(content)
                 .member(member)
-                .createdAt(LocalDateTime.now())
+                .createdDate(LocalDateTime.now())
                 .build();
     }
 
