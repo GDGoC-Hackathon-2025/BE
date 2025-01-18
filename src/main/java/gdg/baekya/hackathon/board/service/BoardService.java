@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -125,5 +129,18 @@ public class BoardService {
                 board.getContent(),
                 commentDtos
         );
+    }
+
+    public List<BoardResponseDto> showBoardList(Long page) {
+        int pageSize = 6; // 페이지당 표시할 데이터 수
+        Pageable pageable = PageRequest.of(page.intValue() - 1, pageSize, Sort.by("createdDate").descending());
+
+        // 데이터베이스에서 페이지네이션된 Board 목록 가져오기
+        Page<Board> boardPage = boardRepository.findAll(pageable);
+
+        // Board 엔티티를 DTO로 변환하여 리스트로 반환
+        return boardPage.stream()
+                .map(BoardResponseDto::fromEntity)
+                .collect(Collectors.toList());
     }
 }

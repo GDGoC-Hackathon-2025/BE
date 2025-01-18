@@ -15,4 +15,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
 
     List<Board> findTop3ByOrderByViewCountDesc();
+
+    Page<Board> findAll(Pageable pageable);
 }
