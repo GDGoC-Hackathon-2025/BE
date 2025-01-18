@@ -28,7 +28,6 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final BoardRepository boardRepository;
-    private final ProductImageService productImageService;
 
     // 펀딩 만들기
     @Override
@@ -66,6 +65,11 @@ public class ProductServiceImpl implements ProductService {
 
         long total = result.getTotalElements();
         return new PageResponse<>(dtoList, pageRequest, total);
+    }
+
+    @Override
+    public PageResponse<ProductResponse> findByCategoryId(Long CategoryId, PageRequest pageRequest) {
+        return null;
     }
 
     @Override

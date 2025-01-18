@@ -2,6 +2,7 @@ package gdg.baekya.hackathon.product.controller.request;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
@@ -32,8 +33,10 @@ public class ProductReqeust {
     private List<MultipartFile> files = new ArrayList<>();
 
     // 펀딩 작성 날짜
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     // 펀딩 종료 날짜
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endAt;
 }
