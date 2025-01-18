@@ -68,5 +68,12 @@ public class ProductController {
         return ApiResponse.created(productService.addLike(addRequest));
     }
 
+//    // 좋아요 순서 정렬
+//    @GetMapping("/like")
+//    public ApiResponse<PageResponse<ProductResponse>> likeList(@RequestParam(value = "category", required = true) String category,
+//                                                               PageRequest pageRequest) {
+//
+//        return ApiResponse.created(productService.findByLike(category, pageRequest));
+//    }
 
 }
