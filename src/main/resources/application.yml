@@ -30,7 +30,7 @@ spring:
               - phoneNumber
             client-name: Naver
             authorization-grant-type: authorization_code
-            redirect-uri: http://43.201.161.96:8080//login/oauth2/code/naver
+            redirect-uri: http://43.201.161.96:8080/login/oauth2/code/naver
 
         provider:
           naver:
