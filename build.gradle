@@ -31,13 +31,16 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // Spring Security
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
-//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
     // JWT 관련 기능
-//    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-//    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-//    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    //validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     // 외부 API 연결
 //    implementation 'org.springframework.boot:spring-boot-starter-webflux'
