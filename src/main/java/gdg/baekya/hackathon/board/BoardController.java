@@ -1,6 +1,7 @@
 package gdg.baekya.hackathon.board;
 
-import gdg.baekya.hackathon.board.domain.Board;
+import gdg.baekya.hackathon.board.response.BoardDetailResponseDto;
+import gdg.baekya.hackathon.board.response.BoardResponseDto;
 import gdg.baekya.hackathon.board.request.WriteBoardRequest;
 import gdg.baekya.hackathon.board.service.BoardService;
 import gdg.baekya.hackathon.common.response.ApiResponse;
@@ -12,6 +13,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +31,12 @@ public class BoardController {
     }
 
     @GetMapping("/favorite")
-    public ApiResponse<List<Board>> showFavoriteBoard(){
+    public ApiResponse<List<BoardResponseDto>> showFavoriteBoard(){
         return ApiResponse.ok(boardService.showFavoriteBoard());
+    }
+
+    @GetMapping("/{boardId}")
+    public ApiResponse<BoardDetailResponseDto> showBoardDetail(@PathVariable("boardId") Long boardId){
+        return ApiResponse.ok(boardService.showBoardDetail(boardId));
     }
 }

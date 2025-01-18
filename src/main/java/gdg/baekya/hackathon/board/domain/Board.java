@@ -1,6 +1,8 @@
 package gdg.baekya.hackathon.board.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import gdg.baekya.hackathon.board.Enum.Category;
 import gdg.baekya.hackathon.comment.domain.Comment;
 import gdg.baekya.hackathon.member.domain.Member;
@@ -50,6 +52,7 @@ public class Board {
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "board")
+    @JsonManagedReference // 직렬화 포함
     @Builder.Default
     private List<BoardReaction> reactions = new ArrayList<>();
 
