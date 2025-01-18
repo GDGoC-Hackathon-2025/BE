@@ -4,6 +4,7 @@ import gdg.baekya.hackathon.board.domain.Board;
 import gdg.baekya.hackathon.board.domain.BoardImage;
 import gdg.baekya.hackathon.board.domain.BoardImageRepository;
 import gdg.baekya.hackathon.board.domain.BoardRepository;
+import gdg.baekya.hackathon.board.request.BoardResponseDto;
 import gdg.baekya.hackathon.board.request.WriteBoardRequest;
 import gdg.baekya.hackathon.member.domain.Member;
 import gdg.baekya.hackathon.member.domain.MemberRepository;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -89,7 +91,10 @@ public class BoardService {
     }
 
 
-    public List<Board> showFavoriteBoard() {
-        return boardRepository.findTopLikedBoards(PageRequest.of(0, 3));
+    public List<BoardResponseDto> showFavoriteBoard() {
+        List<Board> boards = boardRepository.findTop3ByOrderByViewCountDesc(); // 조회수 기준 상위 3개
+        return boards.stream()
+                .map(BoardResponseDto::fromEntity) // DTO로 변환
+                .collect(Collectors.toList());
     }
 }

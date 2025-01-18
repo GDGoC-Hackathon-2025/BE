@@ -1,6 +1,7 @@
 package gdg.baekya.hackathon.board;
 
 import gdg.baekya.hackathon.board.domain.Board;
+import gdg.baekya.hackathon.board.request.BoardResponseDto;
 import gdg.baekya.hackathon.board.request.WriteBoardRequest;
 import gdg.baekya.hackathon.board.service.BoardService;
 import gdg.baekya.hackathon.common.response.ApiResponse;
@@ -29,7 +30,7 @@ public class BoardController {
     }
 
     @GetMapping("/favorite")
-    public ApiResponse<List<Board>> showFavoriteBoard(){
+    public ApiResponse<List<BoardResponseDto>> showFavoriteBoard(){
         return ApiResponse.ok(boardService.showFavoriteBoard());
     }
 }
