@@ -10,10 +10,10 @@ name: Java CI with Gradle
 on:
   push:
     branches:
-      - main
+      - develop
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
   build:
@@ -40,7 +40,7 @@ jobs:
             
       - name: Create application-dev.yml
         run: |
-          echo "${{secrets.APPLICATION_DEV}}" > ./src/main/resources/application-dev.yml
+          echo "${{secrets.APPLICATION_DEV}}" > ./src/main/resources/application.yml
 
       - name: Grant execute permission for gradlew
         run: chmod u+x gradlew
