@@ -3,6 +3,7 @@ package gdg.baekya.hackathon.board.domain;
 
 import gdg.baekya.hackathon.comment.domain.Comment;
 import gdg.baekya.hackathon.member.domain.Member;
+import gdg.baekya.hackathon.category.domain.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,6 +50,10 @@ public class Board {
     @OneToMany(mappedBy = "board")
     @Builder.Default
     private List<BoardReaction> reactions = new ArrayList<>();
+
+    // 카테고리
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     // 생성자
     public static Board of(String title, String content, Member member) {

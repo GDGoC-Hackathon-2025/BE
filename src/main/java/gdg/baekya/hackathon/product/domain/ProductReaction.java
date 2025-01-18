@@ -1,4 +1,4 @@
-package gdg.baekya.hackathon.board.domain;
+package gdg.baekya.hackathon.product.domain;
 
 import gdg.baekya.hackathon.member.domain.Member;
 import jakarta.persistence.*;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class BoardReaction {
+public class ProductReaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,19 +24,19 @@ public class BoardReaction {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
-    private Board board;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     private int Likes;
 
     // 생성자
-    public static BoardReaction of(Board board, Member member) {
-        BoardReaction reaction = BoardReaction.builder()
-                .board(board)
+    public static ProductReaction of(Product product, Member member) {
+        ProductReaction reaction = ProductReaction.builder()
+                .product(product)
                 .member(member)
                 .build();
 
-        board.addReaction(reaction);
+        product.addReaction(reaction);
         return reaction;
     }
 }

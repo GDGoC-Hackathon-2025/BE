@@ -24,7 +24,7 @@ public class Payment {
     private String tossOrderId;
 
     @OneToOne
-//    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     // 총 가격
