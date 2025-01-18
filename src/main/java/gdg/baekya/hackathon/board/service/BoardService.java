@@ -4,6 +4,7 @@ import gdg.baekya.hackathon.board.domain.Board;
 import gdg.baekya.hackathon.board.domain.BoardImage;
 import gdg.baekya.hackathon.board.domain.BoardImageRepository;
 import gdg.baekya.hackathon.board.domain.BoardReaction;
+import gdg.baekya.hackathon.board.domain.BoardReactionRepository;
 import gdg.baekya.hackathon.board.domain.BoardRepository;
 import gdg.baekya.hackathon.board.response.BoardDetailResponseDto;
 import gdg.baekya.hackathon.board.response.BoardResponseDto;
@@ -15,6 +16,7 @@ import gdg.baekya.hackathon.member.domain.PrincipalDetails;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -32,6 +34,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardImageRepository boardImageRepository;
     private final MemberRepository memberRepository;
+    private final BoardReactionRepository boardReactionRepository;
 
     @Transactional
     public Object createBoard(PrincipalDetails principalDetails, WriteBoardRequest writeBoardRequest) {
@@ -142,5 +145,34 @@ public class BoardService {
         return boardPage.stream()
                 .map(BoardResponseDto::fromEntity)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Object makeLike(PrincipalDetails principalDetails, Long boardId) {
+        Long userId = principalDetails.getId();
+        // Member와 Board를 데이터베이스에서 조회
+        Member member = memberRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid memberId: " + userId));
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid boardId: " + boardId));
+
+        // BoardReaction 조회
+        Optional<BoardReaction> reactionOpt = boardReactionRepository.findByMemberAndBoard(member, board);
+
+        if (reactionOpt.isPresent()) {
+            // 이미 존재하면 likes 값을 반전
+            BoardReaction reaction = reactionOpt.get();
+            reaction.setLikes(!reaction.isLikes());
+            boardReactionRepository.save(reaction);
+        } else {
+            // 존재하지 않으면 새로 생성
+            BoardReaction newReaction = BoardReaction.builder()
+                    .member(member)
+                    .board(board)
+                    .Likes(true) // 기본값 true로 설정
+                    .build();
+            boardReactionRepository.save(newReaction);
+        }
+        return null;
     }
 }
