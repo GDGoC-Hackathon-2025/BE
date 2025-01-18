@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final BoardRepository boardRepository;
-
+    private final ProductImageService productImageService;
     // 펀딩 만들기
     @Override
     public ProductResponse createProduct(ProductReqeust reqeust) {
@@ -43,8 +43,12 @@ public class ProductServiceImpl implements ProductService {
         // 새로운 상품 생성
         Product newOne = Product.of(board, reqeust.getPname(), reqeust.getPdesc(), reqeust.getPrice(), reqeust.getGoalPrice(), reqeust.getCreatedAt(), reqeust.getEndAt());
         Product product = productRepository.save(newOne);
-        //
-        return ProductResponse.from(product);
+        // 사진 저장하기
+
+        List<String> uploads = productImageService.saveFiles(product, reqeust.getFiles());
+        ProductResponse response = ProductResponse.from(product);
+        response.setUploadFileNames(uploads);
+        return response;
     }
 
     @Override
