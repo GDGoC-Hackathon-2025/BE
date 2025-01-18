@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class PaymentResponse {
 
         // 서버측에서 받는 것
-
         private String tossOrderId;
         private int totalAmount;
         private String tossOrderName;

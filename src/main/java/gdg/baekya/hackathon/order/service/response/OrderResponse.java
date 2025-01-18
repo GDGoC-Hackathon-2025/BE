@@ -9,25 +9,25 @@ import lombok.Data;
 public class OrderResponse {
 
     // 오더
-    private String tossOrderId;
+    private String orderId;
 
     // 멤버
     private String memberName;
 
     // 펀딩 한 아이템
-    private String fundingItem;
+    private String item;
 
     // 내가 진행한 펀딩 가격
-    private int myPrice;
+    private int price;
 
     // 생성자
     public static OrderResponse from(Order order) {
 
         return OrderResponse.builder()
-                .tossOrderId(order.getTossOrderId())
+                .orderId(order.getTossOrderId())
                 .memberName(order.getMember().getUsername())
-                .fundingItem(order.getProduct().getPname())
-                .myPrice(order.getProduct().getPrice())
+                .item(order.getProduct().getPname())
+                .price(order.getProduct().getPrice())
                 .build();
     }
 

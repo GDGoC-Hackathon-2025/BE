@@ -9,6 +9,8 @@ import gdg.baekya.hackathon.order.service.response.OrderResponse;
 import gdg.baekya.hackathon.order.service.response.PaymentResponse;
 import gdg.baekya.hackathon.page.request.PageRequest;
 import gdg.baekya.hackathon.page.response.PageResponse;
+import gdg.baekya.hackathon.product.domain.Product;
+import gdg.baekya.hackathon.product.domain.ProductRepository;
 import gdg.baekya.hackathon.product.service.response.TossPaymentResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ import java.util.List;
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
+    private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
 
     @Override
@@ -57,6 +60,11 @@ public class PaymentServiceImpl implements PaymentService {
         // 결제 정보 저장
         Payment savedPayment = paymentRepository.save(payment);
         log.info("Payment saved: " + savedPayment);
+
+        // 가져온 오더의 상품 금액을 제외한다.
+        Product product = order.getProduct();
+        product.addPrice(product.getPrice());
+        productRepository.save(product);
 
         // DTO로 변환하여 리액트에 반환
         return TossPaymentResponse.from(savedPayment);
